@@ -1,0 +1,19 @@
+{
+  "name": "pipeline-poc",
+  "version": "1.0.0",
+  "description": "Proof of concepts for different pipelines",
+  "main": "index.js",
+  "repository": "https://github.com/dancook-socialive/pipeline-poc.git",
+  "author": "Dan <dan.cook@socialive.us>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["workspaces/*"],
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+  },
+  "dependencies": {
+    "concurrently": "^6.5.0"
+  }
+}
