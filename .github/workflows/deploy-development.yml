@@ -1,0 +1,16 @@
+name: Deploy to Development
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Development
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+    - name: Magic Deploy
+      run: echo 'deployed to development'
