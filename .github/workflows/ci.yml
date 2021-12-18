@@ -41,3 +41,33 @@ jobs:
         
       - name: Test
         run: yarn test:ci
+  
+  deploy-development:
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency: development
+    environment: development
+
+    steps:
+    - name: Magic Deploy
+      run: echo 'deployed to development'
+  
+  deploy-staging:
+    needs: deploy-development
+    runs-on: ubuntu-latest
+    concurrency: staging
+    environment: staging
+
+    steps:
+    - name: Magic Deploy
+      run: echo 'deployed to staging'
+  
+  deploy-production:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    concurrency: production
+    environment: production
+
+    steps:
+    - name: Magic Deploy
+      run: echo 'deployed to production'
