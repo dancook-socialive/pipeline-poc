@@ -43,6 +43,7 @@ jobs:
         run: yarn test:ci
   
   deploy-development:
+    if: github.event_name == 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     concurrency: development
@@ -51,6 +52,18 @@ jobs:
     steps:
     - name: Magic Deploy
       run: echo 'deployed to development'
+      
+  
+  deploy-development1:
+    if: github.event_name == 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency: dev 1
+    environment: dev 1
+
+    steps:
+    - name: Magic Deploy
+      run: echo 'deployed to development 1'
   
   deploy-staging:
     if: github.event.ref == 'refs/heads/main'
