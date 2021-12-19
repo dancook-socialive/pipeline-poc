@@ -53,7 +53,8 @@ jobs:
       run: echo 'deployed to development'
   
   deploy-staging:
-    needs: deploy-development
+    if: github.event.ref == 'refs/heads/main'
+    needs: build
     runs-on: ubuntu-latest
     concurrency: staging
     environment: staging
@@ -63,6 +64,7 @@ jobs:
       run: echo 'deployed to staging'
   
   deploy-production:
+    if: github.event.ref == 'refs/heads/main'
     needs: deploy-staging
     runs-on: ubuntu-latest
     concurrency: production
