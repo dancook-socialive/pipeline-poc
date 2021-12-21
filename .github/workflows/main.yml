@@ -39,8 +39,32 @@ jobs:
 
       - name: Test
         run: yarn test:ci
+  analyze-server:
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
       
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1.6
+        with:
+          projectBaseDir: workspaces/server
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+  analyze-client:
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1.6
+        with:
+          projectBaseDir: workspaces/client
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
