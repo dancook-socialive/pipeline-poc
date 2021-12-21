@@ -42,16 +42,16 @@ jobs:
       - name: Test
         run: yarn test:ci
   
-  deploy-development:
+  deploy-development2:
     if: github.event_name == 'pull_request'
     needs: build
     runs-on: ubuntu-latest
-    concurrency: development
-    environment: development
+    concurrency: dev 2
+    environment: dev 2
 
     steps:
     - name: Magic Deploy
-      run: echo 'deployed to development'
+      run: echo 'deployed to development 2'
       
   
   deploy-development1:
