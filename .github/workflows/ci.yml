@@ -28,7 +28,7 @@ jobs:
       environment: staging
 
   release:
-    if: github.ref == env.NEXT_RELEASE
+    if: ${{ github.ref == env.NEXT_RELEASE }}
     needs: build
     name: "Release"
     uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
@@ -37,7 +37,7 @@ jobs:
       environment: release
 
   production:
-    if: github.ref == env.NEXT_RELEASE
+    if: ${{ github.ref == env.NEXT_RELEASE }}
     needs: release
     name: "Production"
     uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
@@ -46,7 +46,7 @@ jobs:
       environment: production
   
   sandbox:
-    if: github.ref == env.CURRENT_RELEASE
+    if: ${{ github.ref == env.CURRENT_RELEASE }}
     needs: build
     name: "Release"
     uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
