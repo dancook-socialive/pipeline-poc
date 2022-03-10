@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      artifactName:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{inputs.environment}}
+    concurrency: ${{inputs.environment}}
+
+    steps:
+    - name: Download deployment package
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{inputs.artifactName}}
+        path: artifacts/
+
+    - name: Deploy
+      run: echo "deployed to '${{inputs.environment}}'"

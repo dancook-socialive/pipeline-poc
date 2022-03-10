@@ -7,18 +7,7 @@
   "author": "Dan <dan.cook@socialive.us>",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "workspaces/*"
-  ],
   "scripts": {
-    "client": "yarn workspace client start",
-    "server": "yarn workspace server start",
-    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\"",
-    "test:ci": "yarn workspaces run test:ci",
-    "lint": "yarn workspaces run lint"
-  },
-  "dependencies": {
-    "concurrently": "^6.5.0",
-    "eslint": "^8.5.0"
+    "build": "mkdir dist; echo 'Hello World' >> ./dist/readme.md"
   }
 }

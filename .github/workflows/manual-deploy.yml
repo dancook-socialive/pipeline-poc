@@ -1,0 +1,24 @@
+name: Manual Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        type: environment
+        required: true 
+
+jobs:
+  build:
+    uses: dancook-socialive/pipeline-poc/.github/workflows/build.yml@main
+    with:
+      nodeVersion: '14.x'
+      artifactName: package
+  
+  deploy:
+    needs: build
+    name: "Deploy (${{ github.event.inputs.environment }})"
+    uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
+    with:
+      artifactName: package
+      environment: ${{ github.event.inputs.environment }} 
