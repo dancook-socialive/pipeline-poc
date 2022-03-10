@@ -7,10 +7,6 @@ on:
       - 'release/**'
   pull_request:
 
-env:
-  NEXT_RELEASE: 'refs/heads/release/release_2.0.0'
-  CURRENT_RELEASE: 'refs/heads/release/release_1.0.0'
-
 jobs:
   build:
     uses: dancook-socialive/pipeline-poc/.github/workflows/build.yml@main
@@ -28,7 +24,7 @@ jobs:
       environment: staging
 
   release:
-    if: ${{ github.ref == env.NEXT_RELEASE }}
+    if: ${{ github.ref == 'refs/heads/release/release_2.0.0' }}
     needs: build
     name: "Release"
     uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
@@ -37,7 +33,6 @@ jobs:
       environment: release
 
   production:
-    if: ${{ github.ref == env.NEXT_RELEASE }}
     needs: release
     name: "Production"
     uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
@@ -46,7 +41,7 @@ jobs:
       environment: production
   
   sandbox:
-    if: ${{ github.ref == env.CURRENT_RELEASE }}
+    if: ${{ github.ref == 'refs/heads/release/release_1.0.0' }}
     needs: build
     name: "Release"
     uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
