@@ -32,8 +32,16 @@ jobs:
       artifactName: package
       environment: release
 
-  production:
+  pat:
     needs: release
+    name: "pat"
+    uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
+    with:
+      artifactName: package
+      environment: pat
+
+  production:
+    needs: pat
     name: "Production"
     uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
     with:
