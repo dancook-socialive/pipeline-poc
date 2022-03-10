@@ -43,7 +43,7 @@ jobs:
   sandbox:
     if: ${{ github.ref == 'refs/heads/release/release_1.0.0' }}
     needs: build
-    name: "Release"
+    name: "Sandbox"
     uses: dancook-socialive/pipeline-poc/.github/workflows/deploy.yml@main
     with:
       artifactName: package
