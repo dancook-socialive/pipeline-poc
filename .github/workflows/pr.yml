@@ -1,0 +1,14 @@
+name: Open PR
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh pr create --fill -B main -d
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
