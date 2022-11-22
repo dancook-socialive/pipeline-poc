@@ -16,3 +16,7 @@ jobs:
       - run: gh pr create --fill -B main -d
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: gh pr ready
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
