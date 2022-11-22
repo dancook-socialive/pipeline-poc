@@ -13,14 +13,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - run: gh pr create --fill -B main -d
+      - run: gh pr create --fill -B main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: gh pr merge --auto -m
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - run: gh pr ready
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
