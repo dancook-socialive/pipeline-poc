@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+        with:
+          fetch-depth: 0
+
       - run: gh pr create --fill -B main -d
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
